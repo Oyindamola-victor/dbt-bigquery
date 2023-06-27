@@ -1,5 +1,12 @@
 {{ config(materialized="view") }}
 
+with tripdata as 
+(
+  select *,
+    row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
+  from {{ source('staging','yellow_trip') }}
+  where vendorid is not null 
+)
 
 SELECT 
 
@@ -35,8 +42,8 @@ cast(tpep_dropoff_datetime as timestamp) as dropoff_datetime,
   cast(payment_type as integer) as payment_type,
   {{ get_payment_type_description('payment_type') }} as payment_type_description,
   cast(congestion_surcharge as numeric) as congestion_surcharge
-from {{ source ('staging', 'yellow_trip') }}
-WHERE vendorid is NOT NULL
+from tripdata
+WHERE rn = 1
 
 -- dbt run --m <sql_model> --vars 'is_test_run: false'
 
