@@ -18,7 +18,7 @@ models:
         The records were collected and provided to the NYC Taxi and Limousine Commission (TLC) by
         technology service providers. 
       columns:
-          - name: tripid
+          - name: trip_id
             description: Primary key for this table, generated with a concatenation of vendorid+pickup_datetime
             tests:
                 - unique:
@@ -101,7 +101,7 @@ models:
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
 
-    - name: stg_yellow_tripdata
+    - name: stg_yellow_tripdatab 
       description: > 
         Trips made by New York City's iconic yellow taxis. 
         Yellow taxis are the only vehicles permitted to respond to a street hail from a passenger in all five
@@ -109,7 +109,7 @@ models:
         The records were collected and provided to the NYC Taxi and Limousine Commission (TLC) by
         technology service providers. 
       columns:
-          - name: tripid
+          - name: trip_id
             description: Primary key for this table, generated with a concatenation of vendorid+pickup_datetime
             tests:
                 - unique:
