@@ -49,7 +49,7 @@ WHERE rn = 1
 
 {% if var('is_test_run', default= true) %}
 
-	LIMIT 10
+	LIMIT 100
 
 {% endif %}
 
